@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">GST / Local Time Tracker</string>
+    <string name="random">Random</string>
+    <string name="manual">Manual</string>
+    <string name="gstLabel">GST Time</string>
+    <string name="localLabel">Local Time</string>
+    <string name="local_time">Local Time</string>
+    <string name="gst_time">GST Time</string>
+    <string name="time_tracker">Time Tracker</string>
+</resources>
