@@ -1,4 +1,4 @@
-package com.alexisprojects.timetracker;
+package com.alexisprojects.gstlocal;
 
 import android.content.Context;
 

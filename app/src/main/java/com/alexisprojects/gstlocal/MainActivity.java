@@ -1,4 +1,4 @@
-package com.alexisprojects.timetracker;
+package com.alexisprojects.gstlocal;
 
 import android.os.Bundle;
 import android.view.View;
@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
                 int randGST = randNum.nextInt(24) + 1;
                 int randLocal = randNum.nextInt(localNum) + 1;
 
-                gstHours.setText(randGST + "");
-                localHours.setText(randLocal + "");
+                gstHours.setText(randGST + ":00");
+                localHours.setText(randLocal + ":00");
 
                 changeColor(randGST,randLocal,localNum);
             }
@@ -76,8 +76,10 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "GST and Local times cannot be empty.", Toast.LENGTH_LONG).show();
                     return;
                 }else{
-                    gstHoursAdd = Integer.parseInt(gstHours.getText().toString());
-                    locHoursAdd = Integer.parseInt(localHours.getText().toString());
+                    String gstHoursSplit[] = gstHours.getText().toString().split(":");
+                    String locHousSplit[] = localHours.getText().toString().split(":");
+                    gstHoursAdd = Integer.parseInt(gstHoursSplit[0]);
+                    locHoursAdd = Integer.parseInt(locHousSplit[0]);
                     locLength = Integer.parseInt(localLength.getText().toString());
                     localFour = locLength / 4;
                     if(gstHoursAdd > 24){
@@ -101,8 +103,8 @@ public class MainActivity extends AppCompatActivity {
                     locHoursAdd = locHoursAdd + 1;
                 }
 
-                gstHours.setText(gstHoursAdd + "");
-                localHours.setText(locHoursAdd + "");
+                gstHours.setText(gstHoursAdd + ":00");
+                localHours.setText(locHoursAdd + ":00");
 
                 changeColor(gstHoursAdd, locHoursAdd, locLength);
             }
@@ -132,6 +134,10 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "GST and Local times cannot be empty.", Toast.LENGTH_LONG).show();
                     return;
                 }else{
+                    String gstHoursSplit[] = gstHours.getText().toString().split(":");
+                    String locHousSplit[] = localHours.getText().toString().split(":");
+                    gstHoursAdd = Integer.parseInt(gstHoursSplit[0]);
+                    locHoursAdd = Integer.parseInt(locHousSplit[0]);
                     gstHoursAdd = Integer.parseInt(gstHours.getText().toString());
                     locHoursAdd = Integer.parseInt(localHours.getText().toString());
                     locLength = Integer.parseInt(localLength.getText().toString());
@@ -146,8 +152,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-                gstHours.setText(gstHoursAdd + "");
-                localHours.setText(locHoursAdd + "");
+                gstHours.setText(gstHoursAdd + ":00");
+                localHours.setText(locHoursAdd + ":00");
 
                 changeColor(gstHoursAdd, locHoursAdd, locLength);
             }
