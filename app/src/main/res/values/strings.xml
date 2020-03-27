@@ -7,4 +7,6 @@
     <string name="local_time">Local Time</string>
     <string name="gst_time">GST Time</string>
     <string name="time_tracker">Time Tracker</string>
+    <string name="saveProfile">Save Profile</string>
+    <string name="loadProfile">Load Profile</string>
 </resources>

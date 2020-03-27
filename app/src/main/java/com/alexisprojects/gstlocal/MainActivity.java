@@ -8,12 +8,21 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private EditText gstHours;
     private EditText localHours;
     private EditText localLength;
+    private EditText profileName;
+
+    private static final String FILE_NAME = "saveprofile.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,6 +165,57 @@ public class MainActivity extends AppCompatActivity {
                 localHours.setText(locHoursAdd + ":00");
 
                 changeColor(gstHoursAdd, locHoursAdd, locLength);
+            }
+        });
+
+        Button saveProfile = (Button) findViewById(R.id.saveProfile);
+        saveProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                profileName = (EditText) findViewById(R.id.profileName);
+                String saveName = profileName.getText().toString();
+
+                FileOutputStream fos = null;
+
+                try {
+                    fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
+                    fos.write(saveName.getBytes());
+
+                    Toast.makeText(getApplicationContext(), "Saved profile " + getFilesDir() + "/" + FILE_NAME, Toast.LENGTH_LONG).show();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally{
+                    if(fos != null){
+                        try {
+                            fos.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
+
+        Button loadProfile = (Button) findViewById(R.id.loadProfile);
+        loadProfile.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                profileName = (EditText) findViewById(R.id.profileName);
+                String loadName = profileName.getText().toString();
+
+                FileInputStream fis = null;
+
+                try {
+                    fis = openFileInput(FILE_NAME);
+                    InputStreamReader isr = new InputStreamReader(fis);
+                    BufferedReader br = new BufferedReader(isr);
+
+                    StringBuilder sb = new StringBuilder();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
